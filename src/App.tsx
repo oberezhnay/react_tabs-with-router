@@ -7,31 +7,28 @@ import classNames from 'classnames';
 export const App = () => {
   const location = useLocation();
 
-  const getLinkClassHome = () =>
-    classNames('navbar-item', {
-      'is-active': location.pathname === '/',
-    });
-
-  const getLinkClassTabs = () =>
-    classNames('navbar-item', {
-      'is-active': location.pathname.startsWith('/tabs'),
-    });
-
   return (
     <>
-      {/* Also requires <html class="has-navbar-fixed-top"> */}
       <nav
         className="navbar is-light is-fixed-top is-mobile has-shadow"
         data-cy="Nav"
       >
         <div className="container">
           <div className="navbar-brand">
-            <NavLink to="/" className={getLinkClassHome}>
-              Home
-            </NavLink>
-            <NavLink to="/tabs" className={getLinkClassTabs}>
-              Tabs
-            </NavLink>
+            <div
+              className={classNames({'is-active': location.pathname === '/',})}
+            >
+              <NavLink to="/" className='navbar-item'>
+                Home
+              </NavLink>
+            </div>
+            <div
+              className={classNames({'is-active': location.pathname.startsWith('/tabs')})}
+            >
+              <NavLink to="/tabs" className='navbar-item'>
+                Tabs
+              </NavLink>
+            </div>
           </div>
         </div>
       </nav>

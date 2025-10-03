@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { Tabs, Tab, TabList } from 'react-tabs';
 export const TabsPage = () => {
   const tabs = [
     { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -16,19 +17,19 @@ export const TabsPage = () => {
       <div className="container">
         <h1 className="title">Tabs page</h1>
 
-        <div className="tabs is-boxed">
-          <ul>
+        <Tabs className="tabs is-boxed">
+          <TabList>
             {tabs.map(tab => (
-              <li
+              <Tab
                 key={tab.id}
                 data-cy="Tab"
                 className={classNames({ 'is-active': tabId === tab.id })}
               >
-                <NavLink to={`/tabs/${tab.id}`}>{tab.title}</NavLink>
-              </li>
+                <Link to={`/tabs/${tab.id}`}>{tab.title}</Link>
+              </Tab>
             ))}
-          </ul>
-        </div>
+          </TabList>
+        </Tabs>
 
         <div className="block" data-cy="TabContent">
           {activeTab ? activeTab.content : 'Please select a tab'}
